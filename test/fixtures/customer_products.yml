@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  product: one
+  min_size: 1
+  price: 1
+
+two:
+  customer: two
+  product: two
+  min_size: 1
+  price: 1
