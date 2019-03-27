@@ -11,7 +11,6 @@ module Api
       # GET /customers
       def index
         @customers = Customer.all
-
         render json: @customers
       end
 
