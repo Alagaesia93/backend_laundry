@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # app/models/customer.rb
-class CustomerProduct < ApplicationRecord
-  belongs_to :customer
+class DdtProduct < ApplicationRecord
+  belongs_to :ddt
   belongs_to :product
 end

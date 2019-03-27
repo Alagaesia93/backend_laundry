@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_154641) do
+ActiveRecord::Schema.define(version: 2019_03_27_155036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,25 @@ ActiveRecord::Schema.define(version: 2019_03_25_154641) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ddt_products", force: :cascade do |t|
+    t.bigint "ddt_id"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ddt_id"], name: "index_ddt_products_on_ddt_id"
+    t.index ["product_id"], name: "index_ddt_products_on_product_id"
+  end
+
+  create_table "ddts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_ddts_on_customer_id"
+    t.index ["user_id"], name: "index_ddts_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "size"
@@ -51,4 +70,8 @@ ActiveRecord::Schema.define(version: 2019_03_25_154641) do
 
   add_foreign_key "customer_products", "customers"
   add_foreign_key "customer_products", "products"
+  add_foreign_key "ddt_products", "ddts"
+  add_foreign_key "ddt_products", "products"
+  add_foreign_key "ddts", "customers"
+  add_foreign_key "ddts", "users"
 end

@@ -9,13 +9,13 @@
 puts "Creating customers"
 
 c1 = Customer.create!(
-  name: "cliente1",
-  address: "Piazza La Bomba e Scappa, 2"
+  name: "Il Tucano",
+  address: "Piazza La Bomba e Scappa, 2 Peveragno"
 )
 
 c2 = Customer.create!(
-  name: "cliente2",
-  address: "Via ciaone, 3"
+  name: "Bove's",
+  address: "Via ciaone, 3 Cuneo"
 )
 
 puts "Created customers"
@@ -23,13 +23,29 @@ puts "Created customers"
 puts "Creating products"
 
 p1 = Product.create!(
-  name: 'prodotto1',
+  name: 'tovagliolo 15x15',
   size: 200
 )
 
 p2 = Product.create!(
-  name: 'prodotto2',
+  name: 'tovaglia 2x3',
   size: 400
+)
+
+puts "Created products"
+
+puts "Creating users"
+
+u1 = User.create!(
+  full_name: 'Luca Giuliano',
+  email: 'luca@topclean.it',
+  password: 'changeme'
+)
+
+u2 = User.create!(
+  full_name: 'Ivan Giuliano',
+  email: 'ivan@topclean.it',
+  password: 'changeme'
 )
 
 puts "Created products"
@@ -46,3 +62,45 @@ Customer.all.each do |c|
   end
 end
 puts "Created CustomerProduct"
+
+puts "Creating example ddts"
+
+ddt_1 = Ddt.create!(
+  user: u1,
+  customer: c1
+)
+
+ddt_2 = Ddt.create!(
+  user: u2,
+  customer: c2
+)
+
+puts "Finished creating ddts"
+
+puts "Adding products to ddts"
+
+ddt1_p1 = DdtProduct.create!(
+  ddt: ddt_1,
+  product: p1,
+  quantity: 100
+)
+
+ddt1_p2 = DdtProduct.create!(
+  ddt: ddt_1,
+  product: p2,
+  quantity: 400
+)
+
+ddt2_p1 = DdtProduct.create!(
+  ddt: ddt_2,
+  product: p1,
+  quantity: 10
+)
+
+ddt2_p2 = DdtProduct.create!(
+  ddt: ddt_2,
+  product: p2,
+  quantity: 8
+)
+
+puts "Finished adding products to ddts"

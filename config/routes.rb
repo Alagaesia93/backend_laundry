@@ -4,8 +4,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :customer_products
-      resources :customers
+      resources :customers do
+        resources :customer_products
+      end
+      resources :ddts do
+        resources :ddt_products
+      end
       resources :products
 
       post 'refresh', controller: :refresh, action: :create

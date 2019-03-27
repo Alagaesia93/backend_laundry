@@ -5,6 +5,7 @@ module Api
   module V1
     # top level comment
     class CustomerProductsController < ApplicationController
+      before_action :set_customer, only: %i[show update destroy index]
       before_action :set_customer_product, only: %i[show update destroy]
       before_action :authorize_access_request!, except: %i[show index]
 
@@ -49,12 +50,16 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_customer_product
-        @customer_product = CustomerProduct.find(params[:id])
+        @customer_product = @customer.customer_products.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def customer_product_params
         params.require(:customer_product).permit(:customer_id, :product_id, :min_size, :price)
+      end
+
+      def set_customer
+        @customer = Customer.find(params[:customer_id])
       end
     end
   end

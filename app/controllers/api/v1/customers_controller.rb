@@ -10,7 +10,7 @@ module Api
 
       # GET /customers
       def index
-        @customers = Customer.all
+        @customers = Customer.all.includes(:customer_products)
         render json: @customers
       end
 
